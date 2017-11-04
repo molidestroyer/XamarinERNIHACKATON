@@ -95,7 +95,16 @@ namespace PokemonRecognition.ViewModels
 
         private async void onClickWikiLink(object obj)
         {
-            Device.OpenUri(new System.Uri(WikiUrl));
+
+            try
+            {
+                Device.OpenUri(new System.Uri(WikiUrl));
+
+            }
+            catch (System.Exception ex)
+            {
+
+            }
         }
 
         private async void onClickCameraCommand(object obj)
