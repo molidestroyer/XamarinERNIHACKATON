@@ -13,7 +13,7 @@ namespace PokemonRecognition
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new MainViewMaster();
         }
 
         protected override void OnStart()

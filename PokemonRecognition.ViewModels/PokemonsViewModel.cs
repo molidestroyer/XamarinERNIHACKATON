@@ -9,11 +9,17 @@ using System.Windows.Input;
 
 namespace PokemonRecognition.ViewModels
 {
+    using System.Runtime.CompilerServices;
+
+    using PokemonRecognition.Services;
+
+    using Xamarin.Forms;
+
     public class PokemonsViewModel : BaseViewModel
     {
-        ObservableCollection<Pokemons> _items = new ObservableCollection<Pokemons>();
-        
-        public ObservableCollection<Pokemons> Items
+        Pokemons _items = new Pokemons();
+
+        public Pokemons Items
         {
             get
             {
@@ -24,6 +30,22 @@ namespace PokemonRecognition.ViewModels
                 _items = value;
                 OnPropertyChanged("Items");
             }
+        }
+
+        public Command RefreshCommand { get; private set; }
+
+        public PokemonsViewModel()
+        {
+            this.RefreshCommand = new Command(async () => await ExecuteRefreshCommand());
+            this.RefreshCommand.Execute(null);
+        }
+
+        private async Task ExecuteRefreshCommand()
+        {
+            var pokemonService = new PokemonService();
+            var pokemons = await pokemonService.GetAll();
+
+            this.Items = pokemons;
         }
     }
 }
