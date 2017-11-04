@@ -118,12 +118,10 @@ namespace PokemonRecognition.ViewModels
             var pokemonService = new PokemonService();
             var service = new TextRecognitionService();
             var imageData = await TakePicture();
-            this.NameRecognized = "pikachu";
-            //var handWritingResult = await service.GetHandwrittenTextFromImage(imageData);
-            //this.NameRecognized = handWritingResult;
+            var handWritingResult = await service.GetHandwrittenTextFromImage(imageData);
+            this.NameRecognized = handWritingResult;
             if (NameRecognized != "ERROR Recognizing")
             {
-                //var result = await pokemonService.GetPokemon(NameRecognized);
                 var result = await pokemonService.GetPokemon(NameRecognized);
                 if (result != null)
                 {
