@@ -7,6 +7,7 @@
         <StackLayout>
             <Label Text="Pokemon Cognitive Services"></Label>
             <Button Text="Capture Text" Command="{Binding ClickCameraCommand}"></Button>
+            <Label Text="{ Binding NameRecognized}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
