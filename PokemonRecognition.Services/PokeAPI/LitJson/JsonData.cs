@@ -19,6 +19,9 @@ using System.IO;
 
 namespace LitJson
 {
+    using System.Linq;
+    using System.Reflection;
+
     public class JsonData : IJsonWrapper, IEquatable<JsonData>
     {
         #region Fields
@@ -910,17 +913,19 @@ namespace LitJson
         }
         public Type NetType(Type to)
         {
+            var typeInfo = to.GetTypeInfo();
+
             switch (type)
             {
                 case JsonType.None:
-                    if (!to.IsClass && !to.IsArray)
+                    if (!typeInfo.IsClass && !to.IsArray)
                         throw new ArgumentException();
 
                     return to;
                 case JsonType.Object:
                     return to;
                 case JsonType.Array:
-                    if (!to.IsArray && Array.IndexOf(to.GetInterfaces(), typeof(IList)) == -1)
+                    if (!to.IsArray && Array.IndexOf(typeInfo.ImplementedInterfaces.ToArray(), typeof(IList)) == -1)
                         throw new ArgumentException();
 
                     return to;
