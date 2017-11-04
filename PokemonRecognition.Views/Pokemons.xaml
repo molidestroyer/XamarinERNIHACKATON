@@ -8,11 +8,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content >
         <StackLayout>
-            <StackLayout>
-                <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            </StackLayout>
+            <ActivityIndicator Color="Red" IsRunning="{Binding IsBusy}" />
             <StackLayout>
 
                 <ListView ItemsSource="{Binding Items.results}" SeparatorVisibility="None">
@@ -22,10 +18,8 @@
                                 <ContentView Padding="5">
                                     <Frame OutlineColor="Accent" Padding="10">
                                         <StackLayout Orientation="Horizontal">
-                                            <BoxView x:Name="boxView" Color="{Binding name}" WidthRequest="50" HeightRequest="59" />
                                             <StackLayout>
-                                                <Label Text="{Binding name}" FontSize="22" VerticalOptions="StartAndExpand" />
-                                                <Label Text="{Binding url}" FontSize="16" VerticalOptions="CenterAndExpand" />
+                                                <Label Text="{Binding name}" FontSize="22" VerticalOptions="CenterAndExpand" />
                                             </StackLayout>
                                         </StackLayout>
                                     </Frame>

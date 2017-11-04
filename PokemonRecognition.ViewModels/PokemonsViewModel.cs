@@ -42,10 +42,12 @@ namespace PokemonRecognition.ViewModels
 
         private async Task ExecuteRefreshCommand()
         {
+            IsBusy = true;
             var pokemonService = new PokemonService();
             var pokemons = await pokemonService.GetAll();
 
             this.Items = pokemons;
+            IsBusy = false;
         }
     }
 }

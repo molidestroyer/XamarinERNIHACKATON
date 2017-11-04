@@ -12,6 +12,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
+            <ActivityIndicator Color="Red" IsRunning="{Binding IsBusy}" />
             <StackLayout>
                 <Grid>
                     <Grid.ColumnDefinitions>

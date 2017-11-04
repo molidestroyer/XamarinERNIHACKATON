@@ -65,13 +65,14 @@ namespace PokemonRecognition.ViewModels
 
         private async void onClickCameraCommand(object obj)
         {
+            IsBusy = true;
             ShowResult = false;
             var pokemonService = new PokemonService();
             var service = new TextRecognitionService();
             var imageData = await TakePicture();
-
-            var handWritingResult = await service.GetHandwrittenTextFromImage(imageData);
-            this.NameRecognized = handWritingResult;
+            this.NameRecognized = "pikachu";
+            //var handWritingResult = await service.GetHandwrittenTextFromImage(imageData);
+            //this.NameRecognized = handWritingResult;
             if (NameRecognized != "ERROR Recognizing")
             {
                 //var result = await pokemonService.GetPokemon(NameRecognized);
@@ -81,10 +82,10 @@ namespace PokemonRecognition.ViewModels
                     PokemonItem = result;
                     ShowResult = true;
                     var wikiURL = await service.GetEntityLink(this.NameRecognized);
-                    DependencyService.Get<ITextToSpeech>().Speak(PokemonItem.name);
+                    //DependencyService.Get<ITextToSpeech>().Speak(PokemonItem.name);
                 }
             }
-
+            IsBusy = false;
         }
 
         private async Task<Stream> TakePicture()
