@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Plugin.Media;
 using Xamarin.Forms;
-
+ 
 namespace PokemonRecognition.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
@@ -16,7 +16,7 @@ namespace PokemonRecognition.ViewModels
         private ICommand _clickCameraCommand;
         private Image _image;
         private string _nameRecognized;
-        private PokemonService.Pokemon _pokemon;
+        private PokemonRecognition.Services.PokemonService.Pokemon _pokemon;
 
         public PokemonService.Pokemon Pokemon
         {
@@ -63,7 +63,7 @@ namespace PokemonRecognition.ViewModels
                 var result = await pokemonService.GetPokemon(NameRecognized);
             }
 
-            var wikiURL = await service.GetEntityLink(result);
+            //var wikiURL = await service.GetEntityLink(result);
         }
 
         private async Task<Stream> TakePicture()

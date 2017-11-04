@@ -13,8 +13,8 @@
             <Button Text="Capture Text" Command="{Binding ClickCameraCommand}"></Button>
             <Label Text="{ Binding NameRecognized}" />
         </StackLayout>
-        <StackLayout>
+        <!--<StackLayout>
             <Label Text="{Binding Pokemon.name}" />
-        </StackLayout>
+        </StackLayout>-->
     </ContentPage.Content>
 </ContentPage>
