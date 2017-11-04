@@ -16,7 +16,7 @@ namespace PokemonRecognition.Services
 
         public async Task<Pokemons> GetAll()
         {
-            string url = $"{apiUrl}pokemon/pokemon/?limit=1000";
+            string url = $"{apiUrl}pokemon/?limit=1000";
             return await GetItems<Pokemons>(url);
         }
 
