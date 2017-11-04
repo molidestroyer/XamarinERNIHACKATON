@@ -5,9 +5,8 @@
              x:Class="PokemonRecognition.Views.MainPage">
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Capture Text" Command="{Binding ClickCameraCommand}">
-                
-            </Button>
+            <Label Text="Pokemon Cognitive Services"></Label>
+            <Button Text="Capture Text" Command="{Binding ClickCameraCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

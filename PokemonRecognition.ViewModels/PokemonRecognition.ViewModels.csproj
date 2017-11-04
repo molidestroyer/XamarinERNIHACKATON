@@ -52,12 +52,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PokemonRecognition.Models\PokemonRecognition.Models.csproj">
       <Project>{60011E8B-5C94-47B7-9AA5-1EC3ECE832E7}</Project>
       <Name>PokemonRecognition.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PokemonRecognition.Services\PokemonRecognition.Services.csproj">
+      <Project>{7bbcca38-073d-4f95-82ea-b82cf4b636e8}</Project>
+      <Name>PokemonRecognition.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
