@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PokemonRecognition.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,8 @@ namespace PokemonRecognition.ViewModels
 
         private void onClickCameraCommand(object obj)
         {
-           
+            var service = new TextRecognitionService();
+            var result = service.GetHandwrittenTextFromImage(new byte[8]);
         }
 
 

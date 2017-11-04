@@ -22,7 +22,8 @@ namespace PokemonRecognition.Services
         public async Task<string> GetHandwrittenTextFromImage(byte[] picture) {
             var imageUrl = await bs.CreateBlockBlobAsync(Guid.NewGuid().ToString(), "image/jpg", picture);
             var operation = new HandwritingRecognitionOperation();
-            operation.Url = imageUrl;
+            //operation.Url = imageUrl;
+            operation.Url = "https://www.nayuki.io/res/overwriting-confidential-handwritten-text/overwriting-handwriting.jpg";
             var result = await _visionClient.GetHandwritingRecognitionOperationResultAsync(operation);
             return result.RecognitionResult.ToString();
         }
