@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:PokemonRecognition.ViewModels;assembly=PokemonRecognition.ViewModels"
+             x:Class="PokemonRecognition.Views.Pokemons">
+    <ContentPage.BindingContext>
+        <viewModels:PokemonsViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content >
+        <StackLayout>
+            <StackLayout>
+                <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
+            <StackLayout>
+
+                <ListView ItemsSource="{Binding Items.results}" SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+                            <ViewCell>
+                                <ContentView Padding="5">
+                                    <Frame OutlineColor="Accent" Padding="10">
+                                        <StackLayout Orientation="Horizontal">
+                                            <BoxView x:Name="boxView" Color="{Binding name}" WidthRequest="50" HeightRequest="59" />
+                                            <StackLayout>
+                                                <Label Text="{Binding name}" FontSize="22" VerticalOptions="StartAndExpand" />
+                                                <Label Text="{Binding url}" FontSize="16" VerticalOptions="CenterAndExpand" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </ContentView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
