@@ -1,10 +1,9 @@
 ﻿using Microsoft.ProjectOxford.Vision.Contract;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using System.Net;
+using System.Text;
+using System.Net.Http;
 
 namespace PokemonRecognition.Services
 {
@@ -21,13 +20,21 @@ namespace PokemonRecognition.Services
 
         public async Task<string> GetHandwrittenTextFromImage(Stream picture) {
             // TODO Uncomment var imageUrl = await AzureStorage.UploadFileAsync(picture);
-            var operation = new HandwritingRecognitionOperation();
-            //operation.Url = imageUrl;
-            operation.Url = "https://www.nayuki.io/res/overwriting-confidential-handwritten-text/overwriting-handwriting.jpg";
-            var result = await _visionClient.GetHandwritingRecognitionOperationResultAsync(operation);
-            return result.RecognitionResult.ToString();
+
+            var image = this.GetStreamFromUrl("https://www.nayuki.io/res/overwriting-confidential-handwritten-text/overwriting-handwriting.jpg");
+            var result = await _visionClient.RecognizeTextAsync(image);
+            return result.ToString();
         }
 
+        private Stream GetStreamFromUrl(string url)
+        {
+            Stream imageData;
+
+            using (var wc = new System.Net.Http.HttpClient())
+                imageData = wc.GetStreamAsync(url).Result;
+
+            return imageData;
+        }
 
     }
 }
