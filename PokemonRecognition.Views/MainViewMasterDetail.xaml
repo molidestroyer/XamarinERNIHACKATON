@@ -1,9 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:PokemonRecognition.ViewModels;assembly=PokemonRecognition.ViewModels"
              x:Class="PokemonRecognition.Views.MainViewMasterDetail"
-             Title="Detail">
-  <StackLayout Padding="10">
-    <Label Text="This is a detail page. To get the 'triple' line icon on each platform add a icon to each platform and update the 'Master' page with an Icon that references it."/>
-  </StackLayout>
+             Title="POKEMON'S HACKATHON">
+    <ContentPage.BindingContext>
+        <viewModels:MainViewViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout Padding="10">
+        <StackLayout>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="130"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Image VerticalOptions="Center"
+                  HeightRequest="44" WidthRequest="44" 
+                  Source="{Binding Logo}"
+                  Scale="3" Grid.Row="0" Grid.Column="0"/>
+                <Label Text="" VerticalOptions="Center" Grid.Row="1" Grid.Column="0"/>
+            </Grid>
+        </StackLayout>
+        <StackLayout>
+            <Label Text="POWERED BY" FontSize="16" VerticalOptions="CenterAndExpand" FontAttributes="Bold" />
+            <Label Text="OSCAR VAQUERO" FontSize="22" VerticalOptions="CenterAndExpand" />
+            <Label Text="MIGUEL MOLINA" FontSize="22" VerticalOptions="CenterAndExpand" />
+            <Label Text="ALBERT PLATARD DE QUENIN" FontSize="22" VerticalOptions="CenterAndExpand" />
+        </StackLayout>
+    </StackLayout>
 </ContentPage>

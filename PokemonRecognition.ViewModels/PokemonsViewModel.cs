@@ -17,6 +17,11 @@ namespace PokemonRecognition.ViewModels
 
     public class PokemonsViewModel : BaseViewModel
     {
+        public string Logo
+        {
+            get { return "https://www.pixelslogodesign.com/blog/wp-content/uploads/2016/07/post-pic-1.gif"; }
+        }
+
         Pokemons _items = new Pokemons();
 
         public Pokemons Items
