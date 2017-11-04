@@ -12,7 +12,7 @@ namespace PokemonRecognition.Services
         private string apiUrl = "https://pokeapi.co/api/v2/";
         public async Task<Pokemon> GetPokemon(string pokemon)
         {
-            string url = $"{apiUrl}pokemon/{pokemon}/";
+            string url = $"{apiUrl}pokemon/{pokemon.ToLowerInvariant()}/";
             return await GetItems<Pokemon>(url);
         }
 
