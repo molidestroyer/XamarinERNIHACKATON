@@ -1,6 +1,7 @@
 ﻿using PokemonRecognition.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +14,7 @@ namespace PokemonRecognition.ViewModels
     public class MainPageViewModel:BaseViewModel
     {
         private ICommand _clickCameraCommand;
-        private Image _image;
-        public ICommand SelectedFieldCommand
+        public ICommand ClickCameraCommand
         {
             get { return _clickCameraCommand = _clickCameraCommand ?? new Command(onClickCameraCommand); }
         }
@@ -25,10 +25,10 @@ namespace PokemonRecognition.ViewModels
 
         }
 
-        private void onClickCameraCommand(object obj)
+        private async void onClickCameraCommand(object obj)
         {
             var service = new TextRecognitionService();
-            var result = service.GetHandwrittenTextFromImage(new byte[8]);
+            var result = await service.GetHandwrittenTextFromImage(Stream.Null);
         }
 
 
