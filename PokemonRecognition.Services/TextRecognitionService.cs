@@ -36,7 +36,7 @@ namespace PokemonRecognition.Services
             {
                 
             }
-            return "ERROR REcognizing";
+            return "ERROR Recognizing";
         }
 
         public async Task<string> GetEntityLink(string text)
