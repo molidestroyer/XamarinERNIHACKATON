@@ -3,11 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:PokemonRecognition.Views"
              x:Class="PokemonRecognition.Views.MainPage">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
+    </ContentPage.Padding>
+
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Pokemon Cognitive Services"></Label>
             <Button Text="Capture Text" Command="{Binding ClickCameraCommand}"></Button>
             <Label Text="{ Binding NameRecognized}" />
+        </StackLayout>
+        <StackLayout>
+            <Label Text="{Binding Pokemon.name}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

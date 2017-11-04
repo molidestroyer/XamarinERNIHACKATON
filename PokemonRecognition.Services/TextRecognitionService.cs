@@ -10,19 +10,18 @@ namespace PokemonRecognition.Services
     public class TextRecognitionService
     {
         private Microsoft.ProjectOxford.Vision.VisionServiceClient _visionClient;
+        private Microsoft.ProjectOxford.EntityLinking.EntityLinkingServiceClient _entityLinkClient;
+
         private string _subscriptionKey = "ad8f11a55e6d45d5a2cd5b9f04a4f696";
         //private BlobStorageAsync bs;
 
         public TextRecognitionService() {
+            this._entityLinkClient = new Microsoft.ProjectOxford.EntityLinking.EntityLinkingServiceClient("8ac77dcbac034f239d735088bc51c51c", "https://westus.api.cognitive.microsoft.com/entitylinking/v1.0");
             this._visionClient = new Microsoft.ProjectOxford.Vision.VisionServiceClient(this._subscriptionKey, "https://westeurope.api.cognitive.microsoft.com/vision/v1.0");
             //this.bs = new BlobStorageAsync("XamarinHackaton", "DefaultEndpointsProtocol=https;AccountName=storagetestcognitive;AccountKey=PpjUl52zALHyVIWbLnIOb66shgzT5A9L3XKq7i6OK/xnaR1UFsBE+a8IDJJZGESCuy+mu2Vo5yyE499azRDytw==;EndpointSuffix=core.windows.net");
         }
 
         public async Task<string> GetHandwrittenTextFromImage(Stream picture) {
-            // TODO Uncomment var imageUrl = await AzureStorage.UploadFileAsync(picture);
-
-            //var image = await this.GetStreamFromUrl("https://www.nayuki.io/res/overwriting-confidential-handwritten-text/overwriting-handwriting.jpg");
-
             try
             {
                 var result = await _visionClient.RecognizeTextAsync(picture, "en");
@@ -37,7 +36,22 @@ namespace PokemonRecognition.Services
             {
                 
             }
-            return "ERROR REcognizing";
+            return "ERROR Recognizing";
+        }
+
+        public async Task<string> GetEntityLink(string text)
+        {
+            try
+            {
+                var result = await _entityLinkClient.LinkAsync(text);
+                return result.Rank.ToString(); ;
+
+            }
+            catch (System.Exception ex)
+            {
+
+            }
+            return "ERROR REcognizing link";
         }
 
         private async Task<Stream> GetStreamFromUrl(string url)

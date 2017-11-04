@@ -12,10 +12,16 @@ namespace PokemonRecognition.ViewModels
         private ICommand _clickCameraCommand;
         private Image _image;
         private string _nameRecognized;
+        private PokemonService.Pokemon _pokemon;
 
-        public Image CameraImage
+        public PokemonService.Pokemon Pokemon
         {
-            get { return _image; }
+            get { return _pokemon; }
+            set
+            {
+                _pokemon = value;
+                OnPropertyChanged("Pokemon");
+            }
         }
 
         public string NameRecognized
@@ -37,22 +43,24 @@ namespace PokemonRecognition.ViewModels
         public MainPageViewModel()
         {
             Title = "The Pokemon Searcher";
-
+            
         }
 
         private async void onClickCameraCommand(object obj)
         {
-        //var imageData = await TakePicture();
-        //    var service = new TextRecognitionService();
-            
-        //    var result = await service.GetHandwrittenTextFromImage(imageData);
+            var pokemonService = new PokemonService();
             var imageData = await TakePicture();
             var service = new TextRecognitionService();
 
-            var result = await service.GetHandwrittenTextFromImage(imageData);
-            this.NameRecognized = result;
-        }
+            var handWritingResult = await service.GetHandwrittenTextFromImage(imageData);
+            this.NameRecognized = handWritingResult;
+            if (NameRecognized !="ERROR Recognizing")
+            {
+                var result = await pokemonService.GetPokemon(NameRecognized);
+            }
 
+            var wikiURL = await service.GetEntityLink(result);
+        }
 
         private async Task<Stream> TakePicture()
         {
