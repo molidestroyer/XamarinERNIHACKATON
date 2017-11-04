@@ -1,6 +1,8 @@
-﻿namespace PokemonRecognition.Models
+﻿
+using System.Collections.Generic;
+
+namespace PokemonRecognition.Models
 {
-    using System.Collections.Generic;
 
     public class Pokemon
     {

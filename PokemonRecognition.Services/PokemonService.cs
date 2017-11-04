@@ -1,18 +1,16 @@
 ﻿using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using PokemonRecognition.Models;
 
 namespace PokemonRecognition.Services
 {
-
-    public partial class PokemonService
+    public class PokemonService
     {
         private string apiUrl = "https://pokeapi.co/api/v2/";
-        public async Task<Pokemon> GetPokemon(string pokemon)
+        public async Task<Pokemon> GetPokemon(string pokemonItem)
         {
-            string url = $"{apiUrl}pokemon/{pokemon}/";
+            string url = $"{apiUrl}pokemon/{pokemonItem}/";
             return await GetItems<Pokemon>(url);
         }
 
@@ -26,14 +24,21 @@ namespace PokemonRecognition.Services
         {
             using (var client = new HttpClient())
             {
-                var json = await client.GetStringAsync(url);
+                try
+                {
+                    var json = await client.GetStringAsync(url);
 
-                if (string.IsNullOrWhiteSpace(json))
-                    return default(T);
-                //return json;
-                var pokemonEntity = JsonConvert.DeserializeObject<T>(json);
-                return pokemonEntity;
+                    if (string.IsNullOrWhiteSpace(json))
+                        return default(T);
+                    //return json;
+                    var pokemonEntity = JsonConvert.DeserializeObject<T>(json);
+                    return pokemonEntity;
+                }
+                catch (System.Exception ex)
+                {
+                }
             }
+            return default(T);
         }
     }
 }

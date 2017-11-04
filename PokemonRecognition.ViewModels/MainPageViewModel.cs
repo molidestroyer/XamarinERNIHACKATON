@@ -50,6 +50,8 @@ namespace PokemonRecognition.ViewModels
         private async void onClickCameraCommand(object obj)
         {
             var pokemonService = new PokemonService();
+            //var result1 = await pokemonService.GetPokemon("bulbasaur");
+
             var imageData = await TakePicture();
             var service = new TextRecognitionService();
 
