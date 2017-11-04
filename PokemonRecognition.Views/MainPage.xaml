@@ -31,7 +31,7 @@
                     <Button Text="Capture Text" VerticalOptions="Center" Command="{Binding ClickCameraCommand}" Grid.Row="2" Grid.Column="0"></Button>
                 </Grid>
             </StackLayout>
-            <StackLayout IsVisible="{Binding ShowResult}">
+            <StackLayout IsVisible="{Binding ShowError}">
                 <Label Text="{ Binding NameRecognized}" />
             </StackLayout>
             <StackLayout  IsVisible="{Binding ShowResult}">

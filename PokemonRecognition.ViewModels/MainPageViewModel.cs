@@ -14,6 +14,8 @@ namespace PokemonRecognition.ViewModels
         private Image _image;
         private string _nameRecognized;
         private bool _showResult = false;
+        private bool _showError = false;
+
         private Pokemon _pokemon = new Pokemon();
 
         public bool ShowResult
@@ -23,6 +25,16 @@ namespace PokemonRecognition.ViewModels
             {
                 _showResult = value;
                 OnPropertyChanged("ShowResult");
+            }
+        }
+
+        public bool ShowError
+        {
+            get { return _showError; }
+            set
+            {
+                _showError = value;
+                OnPropertyChanged("ShowError");
             }
         }
 
