@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Plugin.Media;
+using PokeAPI;
+using PokemonRecognition.Services.PokeAPI;
 using Xamarin.Forms;
 
 namespace PokemonRecognition.ViewModels
@@ -34,10 +36,17 @@ namespace PokemonRecognition.ViewModels
 
         private async void onClickCameraCommand(object obj)
         {
-            var imageData = await TakePicture();
-            var service = new TextRecognitionService();
+            var pokemonService = new PokemonService();
+            var result = await pokemonService.GetPokemon("365");
+            // PokemonSpecies p = DataFetcher.GetNamedApiObject<PokemonSpecies>("lucario").Result;
+            PokemonSpecies p = DataFetcher.GetApiObject<PokemonSpecies>(395).Result;
+
+           
+
+        //var imageData = await TakePicture();
+        //    var service = new TextRecognitionService();
             
-            var result = await service.GetHandwrittenTextFromImage(imageData);
+        //    var result = await service.GetHandwrittenTextFromImage(imageData);
         }
 
 
