@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="MainPageViewModel.cs" />
+    <Compile Include="MainViewViewModel.cs" />
     <Compile Include="PokemonsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
