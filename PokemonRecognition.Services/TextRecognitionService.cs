@@ -37,7 +37,7 @@ namespace PokemonRecognition.Services
             {
                 
             }
-            return "ERROR REcognizing";
+            return "ERROR Recognizing";
         }
 
         private async Task<Stream> GetStreamFromUrl(string url)

@@ -40,8 +40,6 @@ namespace PokemonRecognition.Services
         }
 
 
-
-
         public class Result
         {
             public string url { get; set; }
