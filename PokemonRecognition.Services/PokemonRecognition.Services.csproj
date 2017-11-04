@@ -35,9 +35,55 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="PokeAPI\ApiObject.cs" />
+    <Compile Include="PokeAPI\ApiResource.cs" />
+    <Compile Include="PokeAPI\ApiResourceList.cs" />
+    <Compile Include="PokeAPI\Cache.cs" />
+    <Compile Include="PokeAPI\CacheGetter.cs" />
+    <Compile Include="PokeAPI\Common.cs" />
+    <Compile Include="PokeAPI\DataFetcher.cs" />
+    <Compile Include="PokeAPI\Extensions.cs" />
+    <Compile Include="PokeAPI\FPTypes.cs" />
+    <Compile Include="PokeAPI\HttpClientDefaultAdapter.cs" />
+    <Compile Include="PokeAPI\IHttpClientAdapter.cs" />
+    <Compile Include="PokeAPI\Language.cs" />
+    <Compile Include="PokeAPI\LitJson\Attributes.cs" />
+    <Compile Include="PokeAPI\LitJson\IJsonWrapper.cs" />
+    <Compile Include="PokeAPI\LitJson\JsonData.cs" />
+    <Compile Include="PokeAPI\LitJson\JsonException.cs" />
+    <Compile Include="PokeAPI\LitJson\JsonMapper.cs" />
+    <Compile Include="PokeAPI\LitJson\JsonMockWrapper.cs" />
+    <Compile Include="PokeAPI\LitJson\JsonReader.cs" />
+    <Compile Include="PokeAPI\LitJson\JsonWriter.cs" />
+    <Compile Include="PokeAPI\LitJson\Lexer.cs" />
+    <Compile Include="PokeAPI\LitJson\ParserToken.cs" />
+    <Compile Include="PokeAPI\Objects\Berry.cs" />
+    <Compile Include="PokeAPI\Objects\Contest.cs" />
+    <Compile Include="PokeAPI\Objects\Encounter.cs" />
+    <Compile Include="PokeAPI\Objects\Evolution.cs" />
+    <Compile Include="PokeAPI\Objects\Game.cs" />
+    <Compile Include="PokeAPI\Objects\Item.cs" />
+    <Compile Include="PokeAPI\Objects\Location.cs" />
+    <Compile Include="PokeAPI\Objects\Move.cs" />
+    <Compile Include="PokeAPI\Objects\Other.cs" />
+    <Compile Include="PokeAPI\Objects\Pokemon.cs" />
+    <Compile Include="PokeAPI\Objects\PokemonStructs.cs" />
+    <Compile Include="PokeAPI\PokemonParseException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="System.Net.Http, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Forms.2.4.0.280\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
@@ -58,6 +104,11 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
