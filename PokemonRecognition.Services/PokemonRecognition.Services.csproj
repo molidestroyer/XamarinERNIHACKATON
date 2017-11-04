@@ -36,40 +36,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AzureStorage.cs" />
-    <Compile Include="PokeAPI\ApiObject.cs" />
-    <Compile Include="PokeAPI\ApiResource.cs" />
-    <Compile Include="PokeAPI\ApiResourceList.cs" />
-    <Compile Include="PokeAPI\Cache.cs" />
-    <Compile Include="PokeAPI\CacheGetter.cs" />
-    <Compile Include="PokeAPI\Common.cs" />
-    <Compile Include="PokeAPI\DataFetcher.cs" />
-    <Compile Include="PokeAPI\Extensions.cs" />
-    <Compile Include="PokeAPI\FPTypes.cs" />
-    <Compile Include="PokeAPI\HttpClientDefaultAdapter.cs" />
-    <Compile Include="PokeAPI\IHttpClientAdapter.cs" />
-    <Compile Include="PokeAPI\Language.cs" />
-    <Compile Include="PokeAPI\LitJson\Attributes.cs" />
-    <Compile Include="PokeAPI\LitJson\IJsonWrapper.cs" />
-    <Compile Include="PokeAPI\LitJson\JsonData.cs" />
-    <Compile Include="PokeAPI\LitJson\JsonException.cs" />
-    <Compile Include="PokeAPI\LitJson\JsonMapper.cs" />
-    <Compile Include="PokeAPI\LitJson\JsonMockWrapper.cs" />
-    <Compile Include="PokeAPI\LitJson\JsonReader.cs" />
-    <Compile Include="PokeAPI\LitJson\JsonWriter.cs" />
-    <Compile Include="PokeAPI\LitJson\Lexer.cs" />
-    <Compile Include="PokeAPI\LitJson\ParserToken.cs" />
-    <Compile Include="PokeAPI\Objects\Berry.cs" />
-    <Compile Include="PokeAPI\Objects\Contest.cs" />
-    <Compile Include="PokeAPI\Objects\Encounter.cs" />
-    <Compile Include="PokeAPI\Objects\Evolution.cs" />
-    <Compile Include="PokeAPI\Objects\Game.cs" />
-    <Compile Include="PokeAPI\Objects\Item.cs" />
-    <Compile Include="PokeAPI\Objects\Location.cs" />
-    <Compile Include="PokeAPI\Objects\Move.cs" />
-    <Compile Include="PokeAPI\Objects\Other.cs" />
-    <Compile Include="PokeAPI\Objects\Pokemon.cs" />
-    <Compile Include="PokeAPI\Objects\PokemonStructs.cs" />
-    <Compile Include="PokeAPI\PokemonParseException.cs" />
     <Compile Include="PokemonService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextRecognitionService.cs" />
@@ -119,7 +85,12 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\PokemonRecognition.Models\PokemonRecognition.Models.csproj">
+      <Project>{60011e8b-5c94-47b7-9aa5-1ec3ece832e7}</Project>
+      <Name>PokemonRecognition.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

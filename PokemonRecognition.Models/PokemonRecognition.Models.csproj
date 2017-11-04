@@ -35,8 +35,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Ability.cs" />
+    <Compile Include="Ability2.cs" />
+    <Compile Include="Form.cs" />
+    <Compile Include="GameIndice.cs" />
+    <Compile Include="Move.cs" />
+    <Compile Include="Move2.cs" />
+    <Compile Include="MoveLearnMethod.cs" />
+    <Compile Include="Pokemon.cs" />
     <Compile Include="Pokemons.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Result.cs" />
+    <Compile Include="Species.cs" />
+    <Compile Include="Sprites.cs" />
+    <Compile Include="Stat.cs" />
+    <Compile Include="Stat2.cs" />
+    <Compile Include="Type.cs" />
+    <Compile Include="Type2.cs" />
+    <Compile Include="Version.cs" />
+    <Compile Include="VersionGroup.cs" />
+    <Compile Include="VersionGroupDetail.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">

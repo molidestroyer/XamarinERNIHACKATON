@@ -1,14 +1,8 @@
-﻿using PokemonRecognition.Services;
-using System;
-using System.Collections.Generic;
+﻿using Plugin.Media;
+using PokemonRecognition.Services;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Plugin.Media;
-using PokeAPI;
-using PokemonRecognition.Services.PokeAPI;
 using Xamarin.Forms;
 
 namespace PokemonRecognition.ViewModels
@@ -48,13 +42,6 @@ namespace PokemonRecognition.ViewModels
 
         private async void onClickCameraCommand(object obj)
         {
-            var pokemonService = new PokemonService();
-            var result = await pokemonService.GetPokemon("365");
-            // PokemonSpecies p = DataFetcher.GetNamedApiObject<PokemonSpecies>("lucario").Result;
-            PokemonSpecies p = DataFetcher.GetApiObject<PokemonSpecies>(395).Result;
-
-           
-
         //var imageData = await TakePicture();
         //    var service = new TextRecognitionService();
             
