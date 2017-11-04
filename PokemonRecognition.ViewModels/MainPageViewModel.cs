@@ -3,6 +3,7 @@ using PokemonRecognition.Services;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using PokemonRecognition.Models;
 using Xamarin.Forms;
  
 namespace PokemonRecognition.ViewModels
@@ -12,9 +13,9 @@ namespace PokemonRecognition.ViewModels
         private ICommand _clickCameraCommand;
         private Image _image;
         private string _nameRecognized;
-        private PokemonRecognition.Services.PokemonService.Pokemon _pokemon;
+        private Pokemon _pokemon;
 
-        public PokemonService.Pokemon Pokemon
+        public Pokemon Pokemon
         {
             get { return _pokemon; }
             set

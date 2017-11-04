@@ -2,19 +2,18 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using PokeAPI;
+using PokemonRecognition.Models;
 
 namespace PokemonRecognition.Services
 {
-    using PokemonRecognition.Models;
 
     public partial class PokemonService
     {
         private string apiUrl = "https://pokeapi.co/api/v2/";
-        public async Task<Models.PokemonService.Pokemon> GetPokemon(string pokemon)
+        public async Task<Pokemon> GetPokemon(string pokemon)
         {
             string url = $"{apiUrl}pokemon/{pokemon}/";
-            return await GetItems<Models.PokemonService.Pokemon>(url);
+            return await GetItems<Pokemon>(url);
         }
 
         public async Task<Pokemons> GetAll()
