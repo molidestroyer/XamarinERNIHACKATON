@@ -9,6 +9,9 @@ namespace PokemonRecognition.Models
 {
     public class Pokemons
     {
-
+        public int count { get; set; }
+        public object previous { get; set; }
+        public List<Result> results { get; set; }
+        public object next { get; set; }
     }
 }
