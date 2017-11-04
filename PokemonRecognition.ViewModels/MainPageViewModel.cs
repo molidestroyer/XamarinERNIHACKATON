@@ -11,9 +11,16 @@ using Xamarin.Forms;
 
 namespace PokemonRecognition.ViewModels
 {
-    public class MainPageViewModel:BaseViewModel
+    public class MainPageViewModel : BaseViewModel
     {
         private ICommand _clickCameraCommand;
+        private Image _image;
+
+        public Image CameraImage
+        {
+            get { return _image; }
+        }
+
         public ICommand ClickCameraCommand
         {
             get { return _clickCameraCommand = _clickCameraCommand ?? new Command(onClickCameraCommand); }
@@ -27,12 +34,14 @@ namespace PokemonRecognition.ViewModels
 
         private async void onClickCameraCommand(object obj)
         {
+            var imageData = await TakePicture();
             var service = new TextRecognitionService();
-            var result = await service.GetHandwrittenTextFromImage(Stream.Null);
+            
+            var result = await service.GetHandwrittenTextFromImage(imageData);
         }
 
 
-        private async Task TakePicture()
+        private async Task<Stream> TakePicture()
         {
 
             await CrossMedia.Current.Initialize();
@@ -40,17 +49,18 @@ namespace PokemonRecognition.ViewModels
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
             {
                 //DisplayAlert("No Camera", ":( No camera available.", "OK");
-                return;
+                return null;
             }
 
             var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
             {
+                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
                 Directory = "Sample",
                 Name = "test.jpg"
             });
-
+            
             if (file == null)
-                return;
+                return null;
 
             // await DisplayAlert("File Location", file.Path, "OK");
             _image = new Image();
@@ -60,6 +70,7 @@ namespace PokemonRecognition.ViewModels
                 file.Dispose();
                 return stream;
             });
+            return null;
         }
 
 
