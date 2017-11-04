@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Text;
 using System.Net.Http;
+using System.Collections.Generic;
 
 namespace PokemonRecognition.Services
 {
@@ -16,7 +17,7 @@ namespace PokemonRecognition.Services
         //private BlobStorageAsync bs;
 
         public TextRecognitionService() {
-            this._entityLinkClient = new Microsoft.ProjectOxford.EntityLinking.EntityLinkingServiceClient("8ac77dcbac034f239d735088bc51c51c", "https://westus.api.cognitive.microsoft.com/entitylinking/v1.0");
+            this._entityLinkClient = new Microsoft.ProjectOxford.EntityLinking.EntityLinkingServiceClient("8ac77dcbac034f239d735088bc51c51c", "https://westus.api.cognitive.microsoft.com");
             this._visionClient = new Microsoft.ProjectOxford.Vision.VisionServiceClient(this._subscriptionKey, "https://westeurope.api.cognitive.microsoft.com/vision/v1.0");
             //this.bs = new BlobStorageAsync("XamarinHackaton", "DefaultEndpointsProtocol=https;AccountName=storagetestcognitive;AccountKey=PpjUl52zALHyVIWbLnIOb66shgzT5A9L3XKq7i6OK/xnaR1UFsBE+a8IDJJZGESCuy+mu2Vo5yyE499azRDytw==;EndpointSuffix=core.windows.net");
         }
@@ -41,10 +42,17 @@ namespace PokemonRecognition.Services
 
         public async Task<string> GetEntityLink(string text)
         {
+            string wikiUrl = "";
             try
             {
                 var result = await _entityLinkClient.LinkAsync(text);
-                return result.Rank.ToString(); ;
+                if (result.Length > 0 != null) {
+                    //response += string.Join(", ", entityResult.Select(i => "https://en.wikipedia.org/wiki/" + i.WikipediaID.Replace(" ", "_")).ToList());
+                    wikiUrl = string.Format("https://en.wikipedia.org/wiki/{0}", result[0].WikipediaID.Replace(" ", "_"));
+                }
+
+
+                return wikiUrl;
 
             }
             catch (System.Exception ex)
@@ -64,5 +72,20 @@ namespace PokemonRecognition.Services
             return imageData;
         }
 
+    }
+    
+    public class Result
+    {
+        public Query query { get; set; }
+    }
+
+    public class Query
+    {
+        public Dictionary<string, Page> pages { get; set; }
+    }
+
+    public class Page
+    {
+        public string extract { get; set; }
     }
 }

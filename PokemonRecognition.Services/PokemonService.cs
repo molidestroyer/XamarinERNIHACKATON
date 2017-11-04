@@ -20,7 +20,7 @@ namespace PokemonRecognition.Services
             return await GetItems<Pokemons>(url);
         }
 
-        private async Task<T> GetItems<T>(string url)
+        public static async Task<T> GetItems<T>(string url)
         {
             using (var client = new HttpClient())
             {

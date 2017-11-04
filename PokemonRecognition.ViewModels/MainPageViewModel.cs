@@ -60,9 +60,10 @@ namespace PokemonRecognition.ViewModels
             if (NameRecognized !="ERROR Recognizing")
             {
                 var result = await pokemonService.GetPokemon(NameRecognized);
+                var wikiURL = await service.GetEntityLink(this.NameRecognized);
+
             }
 
-            //var wikiURL = await service.GetEntityLink(result);
         }
 
         private async Task<Stream> TakePicture()
