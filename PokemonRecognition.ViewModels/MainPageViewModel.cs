@@ -11,11 +11,13 @@ namespace PokemonRecognition.ViewModels
     public class MainPageViewModel : BaseViewModel
     {
         private ICommand _clickCameraCommand;
+        private ICommand _clickWikiLink;
+
         private Image _image;
         private string _nameRecognized;
         private bool _showResult = false;
         private bool _showError = false;
-
+        private string _wikiUrl;
         private Pokemon _pokemon = new Pokemon();
 
         public bool ShowResult
@@ -64,9 +66,25 @@ namespace PokemonRecognition.ViewModels
 
         }
 
+        public string WikiUrl
+        {
+            get { return _wikiUrl; }
+            set
+            {
+                _wikiUrl = value;
+                OnPropertyChanged("WikiUrl");
+            }
+
+        }
+
         public ICommand ClickCameraCommand
         {
             get { return _clickCameraCommand = _clickCameraCommand ?? new Command(onClickCameraCommand); }
+        }
+
+        public ICommand ClickWikiLink
+        {
+            get { return _clickWikiLink = _clickWikiLink ?? new Command(onClickWikiLink); }
         }
 
         public MainPageViewModel()
@@ -75,10 +93,16 @@ namespace PokemonRecognition.ViewModels
 
         }
 
+        private async void onClickWikiLink(object obj)
+        {
+            Device.OpenUri(new System.Uri(WikiUrl));
+        }
+
         private async void onClickCameraCommand(object obj)
         {
             ShowResult = false;
             ShowError = false;
+            IsBusy = true;
             NameRecognized = "";
 
             var pokemonService = new PokemonService();
@@ -95,13 +119,16 @@ namespace PokemonRecognition.ViewModels
                 {
                     PokemonItem = result;
                     ShowResult = true;
-                    var wikiURL = await service.GetEntityLink(this.NameRecognized);
+                    WikiUrl = await service.GetEntityLink(this.NameRecognized);
                     DependencyService.Get<ITextToSpeech>().Speak(PokemonItem.name);
                 }
             }
-            else {
+            else
+            {
                 ShowError = true;
             }
+
+            IsBusy = false;
 
         }
 

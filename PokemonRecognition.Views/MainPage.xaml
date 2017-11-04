@@ -12,6 +12,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
+            <ActivityIndicator Color="Red" IsRunning="{Binding IsBusy}"></ActivityIndicator>
             <StackLayout>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -43,8 +44,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
                     <Image VerticalOptions="CenterAndExpand"
                 HeightRequest="44" WidthRequest="44" 
@@ -59,11 +59,8 @@
                     <Label Text="Name: " Grid.Row="1" Grid.Column="0"/>
                     <Label Text="{Binding PokemonItem.name}" Grid.Row="1" Grid.Column="1"/>
 
-                    <Label Text="Name: " Grid.Row="2" Grid.Column="0"/>
-                    <Label Text="{Binding PokemonItem.name}" Grid.Row="2" Grid.Column="1"/>
-
-                    <Label Text="Name: " Grid.Row="2" Grid.Column="0"/>
-                    <Label Text="{Binding PokemonItem.name}" Grid.Row="2" Grid.Column="1"/>
+                    <Label Text="Link: " Grid.Row="2" Grid.Column="0"/>
+                    <Button Text="Go to wiki" Grid.Row="2" Grid.Column="1" VerticalOptions="CenterAndExpand" Command="{Binding ClickWikiLink}"/>
                 </Grid>
             </StackLayout>
         </StackLayout>
