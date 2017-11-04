@@ -165,6 +165,7 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <AndroidResource Include="Resources\xml\file_paths.xml" />
+    <Compile Include="TextToSpeechImplementation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -187,6 +188,10 @@
     <AndroidResource Include="Resources\values\styles.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\PokemonRecognition.Services\PokemonRecognition.Services.csproj">
+      <Project>{7BBCCA38-073D-4F95-82EA-B82CF4B636E8}</Project>
+      <Name>PokemonRecognition.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PokemonRecognition\PokemonRecognition.csproj">
       <Project>{171520d2-fa70-4ec6-b4c3-3fd9f1c2fccd}</Project>
       <Name>PokemonRecognition</Name>
