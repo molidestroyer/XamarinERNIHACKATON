@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:PokemonRecognition"
-             x:Class="PokemonRecognition.MainPage">
+             xmlns:local="clr-namespace:PokemonRecognition.Views"
+             x:Class="PokemonRecognition.Views.MainPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Button Text="Capture Text" Command="{Binding ClickCameraCommand}">
+                
+            </Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

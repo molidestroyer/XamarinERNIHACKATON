@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using PokemonRecognition.Views;
 using Xamarin.Forms;
 
 namespace PokemonRecognition
@@ -13,7 +13,7 @@ namespace PokemonRecognition
         {
             InitializeComponent();
 
-            MainPage = new PokemonRecognition.MainPage();
+            MainPage = new MainPage();
         }
 
         protected override void OnStart()
