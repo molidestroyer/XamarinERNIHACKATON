@@ -21,17 +21,17 @@ namespace PokemonRecognition.Services
         public async Task<string> GetHandwrittenTextFromImage(Stream picture) {
             // TODO Uncomment var imageUrl = await AzureStorage.UploadFileAsync(picture);
 
-            var image = this.GetStreamFromUrl("https://www.nayuki.io/res/overwriting-confidential-handwritten-text/overwriting-handwriting.jpg");
-            var result = await _visionClient.RecognizeTextAsync(image);
+            //var image = await this.GetStreamFromUrl("https://www.nayuki.io/res/overwriting-confidential-handwritten-text/overwriting-handwriting.jpg");
+            var result = await _visionClient.RecognizeTextAsync(picture);
             return result.ToString();
         }
 
-        private Stream GetStreamFromUrl(string url)
+        private async Task<Stream> GetStreamFromUrl(string url)
         {
             Stream imageData;
 
             using (var wc = new System.Net.Http.HttpClient())
-                imageData = wc.GetStreamAsync(url).Result;
+                imageData = await wc.GetStreamAsync(url);
 
             return imageData;
         }
