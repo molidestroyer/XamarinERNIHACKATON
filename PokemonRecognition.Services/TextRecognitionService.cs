@@ -22,8 +22,22 @@ namespace PokemonRecognition.Services
             // TODO Uncomment var imageUrl = await AzureStorage.UploadFileAsync(picture);
 
             //var image = await this.GetStreamFromUrl("https://www.nayuki.io/res/overwriting-confidential-handwritten-text/overwriting-handwriting.jpg");
-            var result = await _visionClient.RecognizeTextAsync(picture);
-            return result.ToString();
+
+            try
+            {
+                var result = await _visionClient.RecognizeTextAsync(picture, "en");
+                //return result.Regions[0].Lines.();
+                if(result.Regions.Length > 0)
+                        if(result.Regions[0].Lines.Length > 0)
+                            if (result.Regions[0].Lines[0].Words.Length > 0)
+                                return result.Regions[0].Lines[0].Words[0].Text;
+
+            }
+            catch (System.Exception ex)
+            {
+                
+            }
+            return "ERROR REcognizing";
         }
 
         private async Task<Stream> GetStreamFromUrl(string url)

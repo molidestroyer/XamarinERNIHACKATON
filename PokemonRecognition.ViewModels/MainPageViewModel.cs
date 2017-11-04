@@ -17,10 +17,22 @@ namespace PokemonRecognition.ViewModels
     {
         private ICommand _clickCameraCommand;
         private Image _image;
+        private string _nameRecognized;
 
         public Image CameraImage
         {
             get { return _image; }
+        }
+
+        public string NameRecognized
+        {
+            get { return _nameRecognized; }
+            set
+            {
+                _nameRecognized = value;
+                OnPropertyChanged("NameRecognized");
+            }
+
         }
 
         public ICommand ClickCameraCommand
@@ -47,6 +59,11 @@ namespace PokemonRecognition.ViewModels
         //    var service = new TextRecognitionService();
             
         //    var result = await service.GetHandwrittenTextFromImage(imageData);
+            var imageData = await TakePicture();
+            var service = new TextRecognitionService();
+
+            var result = await service.GetHandwrittenTextFromImage(imageData);
+            this.NameRecognized = result;
         }
 
 
@@ -67,19 +84,12 @@ namespace PokemonRecognition.ViewModels
                 Directory = "Sample",
                 Name = "test.jpg"
             });
-            
+
             if (file == null)
                 return null;
 
             // await DisplayAlert("File Location", file.Path, "OK");
-            _image = new Image();
-            _image.Source = ImageSource.FromStream(() =>
-            {
-                var stream = file.GetStream();
-                file.Dispose();
-                return stream;
-            });
-            return null;
+            return file.GetStream();
         }
 
 
