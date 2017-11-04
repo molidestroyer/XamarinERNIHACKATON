@@ -7,11 +7,24 @@
         <viewModels:PokemonsViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content >
-        <StackLayout>
+        <StackLayout Padding="10">
             <StackLayout>
-                <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="130"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <Image VerticalOptions="Center"
+                        HeightRequest="44" WidthRequest="44" 
+                        Source="{Binding Logo}"
+                        Scale="3" Grid.Row="0" Grid.Column="0"/>
+                    <Label Text="" VerticalOptions="Center" Grid.Row="1" Grid.Column="0"/>
+                </Grid>
             </StackLayout>
             <StackLayout>
 
