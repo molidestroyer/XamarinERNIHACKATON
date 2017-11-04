@@ -51,6 +51,8 @@ namespace PokemonRecognition.ViewModels
 
             var result = await service.GetHandwrittenTextFromImage(imageData);
             this.NameRecognized = result;
+
+            var wikiURL = await service.GetEntityLink(result);
         }
 
 
