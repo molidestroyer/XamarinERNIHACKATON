@@ -18,7 +18,8 @@ namespace PokemonRecognition.Views
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MainPageViewModel();
+
+            //BindingContext = new MainPageViewModel();
         }
 
     }

@@ -13,16 +13,31 @@ namespace PokemonRecognition.ViewModels
         private ICommand _clickCameraCommand;
         private Image _image;
         private string _nameRecognized;
-        private Pokemon _pokemon;
+        private bool _showResult = false;
+        private Pokemon _pokemon = new Pokemon();
 
-        public Pokemon Pokemon
+        public bool ShowResult
+        {
+            get { return _showResult; }
+            set
+            {
+                _showResult = value;
+                OnPropertyChanged("ShowResult");
+            }
+        }
+
+        public Pokemon PokemonItem
         {
             get { return _pokemon; }
             set
             {
                 _pokemon = value;
-                OnPropertyChanged("Pokemon");
+                OnPropertyChanged("PokemonItem");
             }
+        }
+
+        public string Logo {
+            get { return "https://www.pixelslogodesign.com/blog/wp-content/uploads/2016/07/post-pic-1.gif"; }
         }
 
         public string NameRecognized
@@ -49,18 +64,20 @@ namespace PokemonRecognition.ViewModels
 
         private async void onClickCameraCommand(object obj)
         {
+            ShowResult = false;
             var pokemonService = new PokemonService();
-            //var result1 = await pokemonService.GetPokemon("bulbasaur");
+            var result = await pokemonService.GetPokemon("395");
+            PokemonItem = result;
+            ShowResult = true;
+            //var imageData = await TakePicture();
+            //var service = new TextRecognitionService();
 
-            var imageData = await TakePicture();
-            var service = new TextRecognitionService();
-
-            var handWritingResult = await service.GetHandwrittenTextFromImage(imageData);
-            this.NameRecognized = handWritingResult;
-            if (NameRecognized !="ERROR Recognizing")
-            {
-                var result = await pokemonService.GetPokemon(NameRecognized);
-            }
+            //var handWritingResult = await service.GetHandwrittenTextFromImage(imageData);
+            //this.NameRecognized = handWritingResult;
+            //if (NameRecognized !="ERROR Recognizing")
+            //{
+            //    var result = await pokemonService.GetPokemon(NameRecognized);
+            //}
 
             //var wikiURL = await service.GetEntityLink(result);
         }

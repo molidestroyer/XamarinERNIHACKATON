@@ -2,19 +2,70 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:PokemonRecognition.Views"
+             xmlns:viewModels="clr-namespace:PokemonRecognition.ViewModels;assembly=PokemonRecognition.ViewModels"
              x:Class="PokemonRecognition.Views.MainPage">
     <ContentPage.Padding>
-        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
+        <OnPlatform x:TypeArguments="Thickness" iOS="0, 50, 0, 0" />
     </ContentPage.Padding>
-
+    <ContentPage.BindingContext>
+        <viewModels:MainPageViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Pokemon Cognitive Services"></Label>
-            <Button Text="Capture Text" Command="{Binding ClickCameraCommand}"></Button>
-            <Label Text="{ Binding NameRecognized}" />
+            <StackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="130"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Image VerticalOptions="Center"
+                       HeightRequest="44" WidthRequest="44" 
+                       Source="{Binding Logo}"
+                       Scale="3" Grid.Row="0" Grid.Column="0"/>
+                    <Label Text="" VerticalOptions="Center" Grid.Row="1" Grid.Column="0"/>
+                    <Button Text="Capture Text" VerticalOptions="Center" Command="{Binding ClickCameraCommand}" Grid.Row="2" Grid.Column="0"></Button>
+                </Grid>
+            </StackLayout>
+            <StackLayout IsVisible="{Binding ShowResult}">
+                <Label Text="{ Binding NameRecognized}" />
+            </StackLayout>
+            <StackLayout  IsVisible="{Binding ShowResult}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Image VerticalOptions="CenterAndExpand"
+                HeightRequest="44" WidthRequest="44" 
+                Source="{Binding PokemonItem.sprites.front_default}"
+                Scale="3"
+                Grid.Row="0" Grid.Column="0"/>
+                    <Image VerticalOptions="CenterAndExpand"
+                       HeightRequest="44" WidthRequest="44" 
+                       Source="{Binding PokemonItem.sprites.back_default}"
+                       Scale="3"
+                       Grid.Row="0" Grid.Column="1"/>
+                    <Label Text="Name: " Grid.Row="1" Grid.Column="0"/>
+                    <Label Text="{Binding PokemonItem.name}" Grid.Row="1" Grid.Column="1"/>
+
+                    <Label Text="Name: " Grid.Row="2" Grid.Column="0"/>
+                    <Label Text="{Binding PokemonItem.name}" Grid.Row="2" Grid.Column="1"/>
+
+                    <Label Text="Name: " Grid.Row="2" Grid.Column="0"/>
+                    <Label Text="{Binding PokemonItem.name}" Grid.Row="2" Grid.Column="1"/>
+                </Grid>
+            </StackLayout>
         </StackLayout>
-        <!--<StackLayout>
-            <Label Text="{Binding Pokemon.name}" />
-        </StackLayout>-->
     </ContentPage.Content>
 </ContentPage>
