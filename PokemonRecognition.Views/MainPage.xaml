@@ -28,10 +28,10 @@
                        Source="{Binding Logo}"
                        Scale="3" Grid.Row="0" Grid.Column="0"/>
                     <Label Text="" VerticalOptions="Center" Grid.Row="1" Grid.Column="0"/>
-                    <Button Text="Capture Text" VerticalOptions="Center" Command="{Binding ClickCameraCommand}" Grid.Row="2" Grid.Column="0"></Button>
+                    <Button Text="Catch a Pokemon Name!" VerticalOptions="Center" Command="{Binding ClickCameraCommand}" Grid.Row="2" Grid.Column="0"></Button>
                 </Grid>
             </StackLayout>
-            <StackLayout IsVisible="{Binding ShowResult}">
+            <StackLayout IsVisible="{Binding ShowError}">
                 <Label Text="{ Binding NameRecognized}" />
             </StackLayout>
             <StackLayout  IsVisible="{Binding ShowResult}">
