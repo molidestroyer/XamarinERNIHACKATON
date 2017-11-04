@@ -21,7 +21,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="130"/>
                         <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
                     <Image VerticalOptions="Center"
                        HeightRequest="44" WidthRequest="44" 

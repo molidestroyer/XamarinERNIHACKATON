@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using PokemonRecognition.Models;
 using Xamarin.Forms;
- 
+
 namespace PokemonRecognition.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
@@ -36,7 +36,8 @@ namespace PokemonRecognition.ViewModels
             }
         }
 
-        public string Logo {
+        public string Logo
+        {
             get { return "https://www.pixelslogodesign.com/blog/wp-content/uploads/2016/07/post-pic-1.gif"; }
         }
 
@@ -59,34 +60,30 @@ namespace PokemonRecognition.ViewModels
         public MainPageViewModel()
         {
             Title = "The Pokemon Searcher";
-            
+
         }
 
         private async void onClickCameraCommand(object obj)
         {
             ShowResult = false;
             var pokemonService = new PokemonService();
-            var result = await pokemonService.GetPokemon("395");
-            PokemonItem = result;
-            ShowResult = true;
-            //var imageData = await TakePicture();
-            //var service = new TextRecognitionService();
+            var service = new TextRecognitionService();
+            var imageData = await TakePicture();
 
-            //var handWritingResult = await service.GetHandwrittenTextFromImage(imageData);
-            //this.NameRecognized = handWritingResult;
-            //if (NameRecognized !="ERROR Recognizing")
-            //{
-            //    var result = await pokemonService.GetPokemon(NameRecognized);
-            //}
             var handWritingResult = await service.GetHandwrittenTextFromImage(imageData);
             this.NameRecognized = handWritingResult;
-            if (NameRecognized !="ERROR Recognizing")
+            if (NameRecognized != "ERROR Recognizing")
             {
+                //var result = await pokemonService.GetPokemon(NameRecognized);
                 var result = await pokemonService.GetPokemon(NameRecognized);
-                var wikiURL = await service.GetEntityLink(this.NameRecognized);
-
+                if (result != null)
+                {
+                    PokemonItem = result;
+                    ShowResult = true;
+                    var wikiURL = await service.GetEntityLink(this.NameRecognized);
+                    DependencyService.Get<ITextToSpeech>().Speak(PokemonItem.name);
+                }
             }
-            DependencyService.Get<ITextToSpeech>().Speak("Hello from Xamarin Forms");
 
         }
 

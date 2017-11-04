@@ -46,7 +46,7 @@ namespace PokemonRecognition.Services
             try
             {
                 var result = await _entityLinkClient.LinkAsync(text);
-                if (result.Length > 0 != null) {
+                if (result.Length > 0) {
                     //response += string.Join(", ", entityResult.Select(i => "https://en.wikipedia.org/wiki/" + i.WikipediaID.Replace(" ", "_")).ToList());
                     wikiUrl = string.Format("https://en.wikipedia.org/wiki/{0}", result[0].WikipediaID.Replace(" ", "_"));
                 }
