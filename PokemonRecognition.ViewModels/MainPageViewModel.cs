@@ -63,6 +63,7 @@ namespace PokemonRecognition.ViewModels
                 var wikiURL = await service.GetEntityLink(this.NameRecognized);
 
             }
+            DependencyService.Get<ITextToSpeech>().Speak("Hello from Xamarin Forms");
 
         }
 

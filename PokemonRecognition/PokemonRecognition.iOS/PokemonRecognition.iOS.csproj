@@ -91,6 +91,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="TextToSpeechImplementation.cs" />
     <None Include="app.config" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
@@ -172,6 +173,10 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\PokemonRecognition.Services\PokemonRecognition.Services.csproj">
+      <Project>{7BBCCA38-073D-4F95-82EA-B82CF4B636E8}</Project>
+      <Name>PokemonRecognition.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PokemonRecognition\PokemonRecognition.csproj">
       <Project>{171520d2-fa70-4ec6-b4c3-3fd9f1c2fccd}</Project>
       <Name>PokemonRecognition</Name>
