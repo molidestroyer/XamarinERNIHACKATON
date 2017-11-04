@@ -78,6 +78,9 @@ namespace PokemonRecognition.ViewModels
         private async void onClickCameraCommand(object obj)
         {
             ShowResult = false;
+            ShowError = false;
+            NameRecognized = "";
+
             var pokemonService = new PokemonService();
             var service = new TextRecognitionService();
             var imageData = await TakePicture();
@@ -95,6 +98,9 @@ namespace PokemonRecognition.ViewModels
                     var wikiURL = await service.GetEntityLink(this.NameRecognized);
                     DependencyService.Get<ITextToSpeech>().Speak(PokemonItem.name);
                 }
+            }
+            else {
+                ShowError = true;
             }
 
         }
